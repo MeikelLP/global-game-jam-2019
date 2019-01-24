@@ -14,7 +14,3 @@ build:
     paths:
     - editor.log
     - build/
-cache:
-  paths:
-  - src/Library/
-  - src/Packages/
