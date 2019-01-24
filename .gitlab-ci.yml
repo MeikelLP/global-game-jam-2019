@@ -1,0 +1,20 @@
+stages:
+  - build
+
+build:
+  stage: build
+  only:
+  - master
+  tags:
+  - unity
+  script:
+  - powershell.exe -ExecutionPolicy Bypass "& .\build.ps1"
+  artifacts:
+    name: "Build-%CI_PIPELINE_IID%"
+    paths:
+    - editor.log
+    - build/
+cache:
+  paths:
+  - src/Library/
+  - src/Packages/
