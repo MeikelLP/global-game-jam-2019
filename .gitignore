@@ -38,3 +38,6 @@ Logs/
 
 # General
 *.log
+Assets/Plugins/
+Assets/Plugins.meta
+.idea/
