@@ -64,7 +64,7 @@ public class EnemyAttack : MonoBehaviour
 
         if (playerHealth.currentHealth > 0)
         {
-            playerHealth.TakeDamage(attackDamage);
+            playerHealth.TakeDamage(null, attackDamage, Vector3.zero);
         }
     }
 }

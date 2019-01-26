@@ -1,34 +1,30 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using Objects;
+using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyMovement : MonoBehaviour
+namespace Enemy
 {
-    Transform player;
-
-    //PlayerHealth playerHealth;
-    EnemyHealth enemyHealth;
-    NavMeshAgent nav;
-
-
-    void Awake()
+    public class EnemyMovement : MonoBehaviour
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
-        //playerHealth = player.GetComponent <PlayerHealth> ();
-        enemyHealth = GetComponent <EnemyHealth> ();
-        nav = GetComponent<NavMeshAgent>();
-    }
+        //PlayerHealth playerHealth;
+        private EnemyHealth enemyHealth;
+        private NavMeshAgent nav;
 
-
-    void Update()
-    {
-        if(enemyHealth.currentHealth > 0)
+        void Awake()
         {
-            nav.destination = player.position;
+            enemyHealth = GetComponent<EnemyHealth>();
+            nav = GetComponent<NavMeshAgent>();
         }
-        //else
-        //{
-        //    nav.enabled = false;
-        //}
+
+        void FixedUpdate()
+        {
+            if (enemyHealth.currentHealth <= 0)
+            {
+                return;
+            }
+
+            var closestEnemy = EnemyTargetFinder.FindClosestEnemy(transform.position);
+            nav.destination = closestEnemy.transform.position;
+        }
     }
 }

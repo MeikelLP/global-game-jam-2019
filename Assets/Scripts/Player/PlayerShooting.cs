@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Objects;
+using UnityEngine;
 using Weapon;
 
 public class PlayerShooting : MonoBehaviour
@@ -58,13 +59,11 @@ public class PlayerShooting : MonoBehaviour
     {
         if (weaponSelection.selectedWeapon.IsEmpty())
         {
-            Debug.Log("ammunition is empty");
             // TODO show message you need to reload
             return;
         }
         else
         {
-            Debug.Log("Decreasing ammunition");
             weaponSelection.selectedWeapon.DecreaseAmmunition();
         }
         
@@ -85,10 +84,15 @@ public class PlayerShooting : MonoBehaviour
 
         if (Physics.Raycast(shootRay, out shootHit, range, shootableMask))
         {
-            EnemyHealth enemyHealth = shootHit.collider.GetComponent<EnemyHealth>();
-            if (enemyHealth != null)
+            HealthBehaviour destroyableComponent = shootHit.collider.GetComponent<HealthBehaviour>();
+            if (destroyableComponent != null)
             {
-                enemyHealth.TakeDamage(this, damagePerShot, shootHit.point);
+                Debug.Log("found component with health behaviour");
+                destroyableComponent.TakeDamage(this, damagePerShot, shootHit.point);
+            }
+            else
+            {
+                Debug.Log("no component with health behaviour found");
             }
 
             gunLine.SetPosition(1, shootHit.point);
