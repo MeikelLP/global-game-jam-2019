@@ -1,47 +1,58 @@
-﻿using UnityEngine;
-using System.Collections;
-using Objects;
+﻿using Objects;
+using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyMovement : MonoBehaviour
+namespace Enemy
 {
-    //PlayerHealth playerHealth;
-    private EnemyHealth enemyHealth;
-    private NavMeshAgent nav;
-
-    void Awake()
+    public class EnemyMovement : MonoBehaviour
     {
-        enemyHealth = GetComponent<EnemyHealth>();
-        nav = GetComponent<NavMeshAgent>();
-    }
+        //PlayerHealth playerHealth;
+        private EnemyHealth enemyHealth;
+        private NavMeshAgent nav;
 
-    void FixedUpdate()
-    {
-        HealthBehaviour closestEnemy = FindClosestEnemy();
-
-        nav.destination = closestEnemy.transform.position;
-    }
-
-
-    private HealthBehaviour FindClosestEnemy()
-    {
-        var gos = GameObject.FindObjectsOfType<HealthBehaviour>();
-        // TODO remove enemies
-
-        HealthBehaviour closest = null;
-        float minimumDistance = Mathf.Infinity;
-        Vector3 position = transform.position;
-        foreach (HealthBehaviour go in gos)
+        void Awake()
         {
-            Vector3 diff = go.transform.position - position;
-            float curDistance = diff.sqrMagnitude;
-            if (curDistance < minimumDistance)
-            {
-                closest = go;
-                minimumDistance = curDistance;
-            }
+            enemyHealth = GetComponent<EnemyHealth>();
+            nav = GetComponent<NavMeshAgent>();
         }
 
-        return closest;
+        void FixedUpdate()
+        {
+            if (enemyHealth.currentHealth <= 0)
+            {
+                return;
+            }
+
+            var closestEnemy = FindClosestEnemy();
+            nav.destination = closestEnemy.transform.position;
+        }
+
+
+        private HealthBehaviour FindClosestEnemy()
+        {
+            var gos = GameObject.FindObjectsOfType<HealthBehaviour>();
+            // TODO remove enemies
+
+            HealthBehaviour closest = null;
+            float minimumDistance = Mathf.Infinity;
+            Vector3 position = transform.position;
+            foreach (HealthBehaviour go in gos)
+            {
+                // remove self
+                if (go is EnemyHealth)
+                {
+                    continue;
+                }
+                Vector3 diff = go.transform.position - position;
+                float curDistance = diff.sqrMagnitude;
+                if (curDistance < minimumDistance)
+                {
+                    closest = go;
+                    minimumDistance = curDistance;
+                }
+            }
+
+            return closest;
+        }
     }
 }

@@ -12,8 +12,7 @@ namespace Objects
 
         public void TakeDamage (PlayerShooting attacker, int damageAmount, Vector3 hitPoint)
         {
-            Debug.Log("calling take damage");
-            // TODO GetAudioSource().Play ();
+            GetAudioSource().Play ();
 
             currentHealth -= damageAmount;
             Debug.Log("new health amount: " + currentHealth);

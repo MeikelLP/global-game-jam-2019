@@ -36,12 +36,6 @@ public class PlayerHealth : HealthBehaviour
         hitParticles = GetComponent <ParticleSystem> ();
     }
 
-
-    void Update ()
-    {
-    }
-
-
     public void TakeDamage (PlayerShooting attacker, int damageAmount, Vector3 hitPoint)
     {
         base.TakeDamage(attacker, damageAmount, hitPoint);

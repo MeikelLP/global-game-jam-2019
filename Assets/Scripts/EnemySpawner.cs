@@ -63,6 +63,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void SpawnEnemy()
     {
+        Debug.Log("Spawning new enemy");
         var randomPosition = spawnPoints[(int)(Random.value * spawnPoints.Length)].position;
         var randomEnemy = enemyPrefabs[(int) (Random.value * enemyPrefabs.Length)];
 
