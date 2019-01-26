@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Objects;
+using UnityEngine;
 using Weapon;
 
 public class PlayerShooting : MonoBehaviour
@@ -85,10 +86,21 @@ public class PlayerShooting : MonoBehaviour
 
         if (Physics.Raycast(shootRay, out shootHit, range, shootableMask))
         {
-            EnemyHealth enemyHealth = shootHit.collider.GetComponent<EnemyHealth>();
-            if (enemyHealth != null)
+//            EnemyHealth enemyHealth = shootHit.collider.GetComponent<EnemyHealth>();
+//            if (enemyHealth != null)
+//            {
+//                enemyHealth.TakeDamage(this, damagePerShot, shootHit.point);
+//            }
+            
+            HealthBehavior destroyableComponent = shootHit.collider.GetComponent<HealthBehavior>();
+            if (destroyableComponent != null)
             {
-                enemyHealth.TakeDamage(this, damagePerShot, shootHit.point);
+                Debug.Log("found component with health behaviour");
+                destroyableComponent.TakeDamage(this, damagePerShot, shootHit.point);
+            }
+            else
+            {
+                Debug.Log("no component with health behaviour found");
             }
 
             gunLine.SetPosition(1, shootHit.point);
