@@ -59,13 +59,11 @@ public class PlayerShooting : MonoBehaviour
     {
         if (weaponSelection.selectedWeapon.IsEmpty())
         {
-            Debug.Log("ammunition is empty");
             // TODO show message you need to reload
             return;
         }
         else
         {
-            Debug.Log("Decreasing ammunition");
             weaponSelection.selectedWeapon.DecreaseAmmunition();
         }
         
