@@ -41,3 +41,5 @@ Logs/
 Assets/Plugins/
 Assets/Plugins.meta
 .idea/
+*.blend1
+*.blend1.meta
