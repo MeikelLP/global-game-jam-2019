@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class EnemyHealth : MonoBehaviour
     CapsuleCollider capsuleCollider;
     bool isDead;
     bool isSinking;
+
+    public event EventHandler<EventArgs> OnDeath; 
 
 
     void Awake ()
@@ -59,6 +62,7 @@ public class EnemyHealth : MonoBehaviour
     void Death ()
     {
         isDead = true;
+        OnDeath?.Invoke(this, null);
 
         capsuleCollider.isTrigger = true;
 
@@ -66,6 +70,7 @@ public class EnemyHealth : MonoBehaviour
 
         enemyAudio.clip = deathClip;
         enemyAudio.Play ();
+        StartSinking();
     }
 
 
