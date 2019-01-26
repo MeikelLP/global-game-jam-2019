@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
+    public int money = 10;
     public int startingHealth = 100;
     public int currentHealth;
     public float sinkSpeed = 2.5f;
