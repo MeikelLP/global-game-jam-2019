@@ -30,6 +30,7 @@ public class PlayerHealth : MonoBehaviour
         playerMovement = GetComponent <PlayerMovement> ();
         //playerShooting = GetComponentInChildren <PlayerShooting> ();
         currentHealth = startingHealth;
+        healthSlider.value = 1;
     }
 
 
@@ -37,11 +38,11 @@ public class PlayerHealth : MonoBehaviour
     {
         if(damaged)
         {
-            damageImage.color = flashColour;
+//            damageImage.color = flashColour;
         }
         else
         {
-            damageImage.color = Color.Lerp (damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
+//            damageImage.color = Color.Lerp (damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
         }
         damaged = false;
     }
@@ -52,8 +53,9 @@ public class PlayerHealth : MonoBehaviour
         damaged = true;
 
         currentHealth -= amount;
+        Debug.Log(currentHealth);
 
-        healthSlider.value = currentHealth;
+        healthSlider.value = currentHealth / (float)startingHealth;
 
         playerAudio.Play ();
 

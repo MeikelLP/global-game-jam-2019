@@ -1,20 +1,26 @@
-﻿using Gun;
-using UnityEngine;
+﻿using UnityEngine;
+using Weapon;
 
 namespace Player
 {
     public class PlayerAction: MonoBehaviour
     {
-        private GunStatus gunStatus;
+        private WeaponSelection weaponSelection;
+     
 
         void Start()
         {
-            gunStatus = GunStatus.GetInstance();
+            weaponSelection = GetComponentInParent<WeaponSelection>();
         }
 
         void Update ()
         {
-            //timer += Time.deltaTime;
+            if (weaponSelection.selectedWeapon.IsFull())
+            {
+                // no reload necessary if is full
+                return;
+            }
+
 
             if(Input.GetButton ("Reload"))
             {
@@ -24,7 +30,7 @@ namespace Player
 
         void Reload()
         {
-            gunStatus.ammunition.Reload();
+            weaponSelection.selectedWeapon.Reload();
         }
     
     }
