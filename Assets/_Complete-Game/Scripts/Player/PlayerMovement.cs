@@ -8,12 +8,13 @@ namespace CompleteProject
     public class PlayerMovement : MonoBehaviour
     {
         public float speed = 6f;            // The speed that the player will move at.
-         public static bool useMouse;
+         public static bool useMouse = true;
 
         Vector3 movement;                   // The vector to store the direction of the player's movement.
         Animator anim;                      // Reference to the animator component.
         Rigidbody playerRigidbody;          // Reference to the player's rigidbody.
 #if !MOBILE_INPUT
+        
         int floorMask;                      // A layer mask so that a ray can be cast just at gameobjects on the floor layer.
         float camRayLength = 100f;          // The length of the ray from the camera into the scene.
 #endif
