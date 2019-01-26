@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
+using Weapon;
 
 public class PlayerShooting : MonoBehaviour
 {
     public int damagePerShot = 20;
     public float timeBetweenBullets = 0.15f;
     public float range = 100f;
+    
+    public WeaponSelection weaponSelection;
 
 
     float timer;
@@ -53,6 +56,18 @@ public class PlayerShooting : MonoBehaviour
 
     void Shoot()
     {
+        if (weaponSelection.selectedWeapon.IsEmpty())
+        {
+            Debug.Log("ammunition is empty");
+            // TODO show message you need to reload
+            return;
+        }
+        else
+        {
+            Debug.Log("Decreasing ammunition");
+            weaponSelection.selectedWeapon.DecreaseAmmunition();
+        }
+        
         timer = 0f;
 
         gunAudio.Play();
