@@ -58,50 +58,55 @@ namespace CompleteProject
             playerRigidbody.MovePosition (transform.position + movement);
         }
 
+// Get.Joystick.X
+// JoyX = Joystick.X * 5
+// Get.Joystick.Y
+// JoyY = Joystick.Y * 5
+// Richtung.Joy = Vector2(Joystick.X, Joystick.Y)
+// player.Rigidbody.MoveRotation (Richtung.Joy)
+
+// Vector3 turnDir = new Vector3(CrossPlatformInputManager.GetAxisRaw("Joystick X") , 0f , CrossPlatformInputManager.GetAxisRaw("Joystick Y"));
+// if (turnDir != Vector3.zero)
+// turnDir = Vector3 (turnDir.X * 5, turnDir.Y * 5)
+// Vector3 playerToMouse = (transform.position + turnDir) - transform.position;
+// playerToMouse.y = 0f;
+// Quaternion newRotatation = Quaternion.LookRotation(playerToMouse);
+// Set the player's rotation to this new rotation.
+// playerRigidbody.MoveRotation(newRotatation);
+
 
         void Turning ()
+           
         {
-#if !MOBILE_INPUT
             // Create a ray from the mouse cursor on screen in the direction of the camera.
-            Ray camRay = Camera.main.ScreenPointToRay (Input.mousePosition);
+            //Ray camRay = Camera.main.ScreenPointToRay (Input.mousePosition);
 
             // Create a RaycastHit variable to store information about what was hit by the ray.
-            RaycastHit floorHit;
+            //RaycastHit floorHit;
 
             // Perform the raycast and if it hits something on the floor layer...
-            if(Physics.Raycast (camRay, out floorHit, camRayLength, floorMask))
-            {
+            //if(Physics.Raycast (camRay, out floorHit, camRayLength, floorMask))
+            //{
                 // Create a vector from the player to the point on the floor the raycast from the mouse hit.
-                Vector3 playerToMouse = floorHit.point - transform.position;
+                //Vector3 playerToMouse = floorHit.point - transform.position;
 
                 // Ensure the vector is entirely along the floor plane.
-                playerToMouse.y = 0f;
+                //playerToMouse.y = 0f;
 
                 // Create a quaternion (rotation) based on looking down the vector from the player to the mouse.
-                Quaternion newRotatation = Quaternion.LookRotation (playerToMouse);
+                //Quaternion newRotatation = Quaternion.LookRotation (playerToMouse);
 
                 // Set the player's rotation to this new rotation.
-                playerRigidbody.MoveRotation (newRotatation);
-            }
-#else
-
-            Vector3 turnDir = new Vector3(CrossPlatformInputManager.GetAxisRaw("Mouse X") , 0f , CrossPlatformInputManager.GetAxisRaw("Mouse Y"));
-
-            if (turnDir != Vector3.zero)
-            {
-                // Create a vector from the player to the point on the floor the raycast from the mouse hit.
+                //playerRigidbody.MoveRotation (newRotatation);
+            //}
+            
+            Vector3 turnDir = new Vector3(CrossPlatformInputManager.GetAxisRaw("Joystick X") * 5 , 0f * 0, CrossPlatformInputManager.GetAxisRaw("Joystick Y") * 5);
                 Vector3 playerToMouse = (transform.position + turnDir) - transform.position;
-
-                // Ensure the vector is entirely along the floor plane.
-                playerToMouse.y = 0f;
-
-                // Create a quaternion (rotation) based on looking down the vector from the player to the mouse.
                 Quaternion newRotatation = Quaternion.LookRotation(playerToMouse);
-
-                // Set the player's rotation to this new rotation.
                 playerRigidbody.MoveRotation(newRotatation);
-            }
-#endif
+
+            
+
         }
 
 
