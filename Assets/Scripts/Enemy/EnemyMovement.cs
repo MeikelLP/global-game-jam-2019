@@ -1,11 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Objects;
 using UnityEngine.AI;
 
 public class EnemyMovement : MonoBehaviour
 {
-    Transform player;
-
     //PlayerHealth playerHealth;
     EnemyHealth enemyHealth;
     NavMeshAgent nav;
@@ -13,22 +12,47 @@ public class EnemyMovement : MonoBehaviour
 
     void Awake()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
-        //playerHealth = player.GetComponent <PlayerHealth> ();
-        enemyHealth = GetComponent <EnemyHealth> ();
+        enemyHealth = GetComponent<EnemyHealth>();
         nav = GetComponent<NavMeshAgent>();
     }
 
 
     void Update()
     {
-        if(enemyHealth.currentHealth > 0)
+//        var deltaTime = Time.deltaTime;
+//        if (enemyHealth.currentHealth > 0)
+//        {
+//            nav.destination = player.position;
+//        }
+    }
+
+    void FixedUpdate()
+    {
+        HealthBehavior closestEnemy = FindClosestEnemy();
+
+        nav.destination = closestEnemy.transform.position;
+    }
+
+
+    private HealthBehavior FindClosestEnemy()
+    {
+        var gos = GameObject.FindObjectsOfType<HealthBehavior>();
+        // TODO remove enemies
+
+        HealthBehavior closest = null;
+        float minimumDistance = Mathf.Infinity;
+        Vector3 position = transform.position;
+        foreach (HealthBehavior go in gos)
         {
-            nav.destination = player.position;
+            Vector3 diff = go.transform.position - position;
+            float curDistance = diff.sqrMagnitude;
+            if (curDistance < minimumDistance)
+            {
+                closest = go;
+                minimumDistance = curDistance;
+            }
         }
-        //else
-        //{
-        //    nav.enabled = false;
-        //}
+
+        return closest;
     }
 }
