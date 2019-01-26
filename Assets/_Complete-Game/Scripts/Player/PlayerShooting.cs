@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Gun;
+using UnityEngine;
 using UnitySampleAssets.CrossPlatformInput;
 
 namespace CompleteProject
@@ -9,6 +10,7 @@ namespace CompleteProject
         public float timeBetweenBullets = 0.15f;        // The time between each shot.
         public float range = 100f;                      // The distance the gun can fire.
 
+        public GunStatus gunStatus;
 
         float timer;                                    // A timer to determine when to fire.
         Ray shootRay = new Ray();                       // A ray from the gun end forwards.
@@ -33,6 +35,7 @@ namespace CompleteProject
             gunAudio = GetComponent<AudioSource> ();
             gunLight = GetComponent<Light> ();
 			//faceLight = GetComponentInChildren<Light> ();
+			gunStatus = GunStatus.GetInstance();
         }
 
 
@@ -76,6 +79,18 @@ namespace CompleteProject
 
         void Shoot ()
         {
+            if (gunStatus.ammunition.IsEmpty())
+            {
+                Debug.Log("ammunition is empty");
+                // TODO show message you need to reload
+                return;
+            }
+            else
+            {
+                Debug.Log("Decreasing ammunition");
+                gunStatus.ammunition.Decrease();
+            }
+
             // Reset the timer.
             timer = 0f;
 
@@ -93,11 +108,13 @@ namespace CompleteProject
             // Enable the line renderer and set it's first position to be the end of the gun.
             gunLine.enabled = true;
             gunLine.SetPosition (0, transform.position);
+            
 
             // Set the shootRay so that it starts at the end of the gun and points forward from the barrel.
             shootRay.origin = transform.position;
             shootRay.direction = transform.forward;
 
+            Debug.Log("check if something was hit");
             // Perform the raycast against gameobjects on the shootable layer and if it hits something...
             if(Physics.Raycast (shootRay, out shootHit, range, shootableMask))
             {
@@ -107,16 +124,22 @@ namespace CompleteProject
                 // If the EnemyHealth component exist...
                 if(enemyHealth != null)
                 {
+                    Debug.Log("enemy was hit");       
                     // ... the enemy should take damage.
                     enemyHealth.TakeDamage (damagePerShot, shootHit.point);
                 }
-
+                else
+                {
+                    Debug.Log("no enemy was hit");
+                }
+                
                 // Set the second position of the line renderer to the point the raycast hit.
                 gunLine.SetPosition (1, shootHit.point);
             }
             // If the raycast didn't hit anything on the shootable layer...
             else
             {
+                Debug.Log("nothing with the shootable layer has been hit.");
                 // ... set the second position of the line renderer to the fullest extent of the gun's range.
                 gunLine.SetPosition (1, shootRay.origin + shootRay.direction * range);
             }
