@@ -65,7 +65,7 @@ public class EnemyHealth : HealthBehaviour
         isDead = true;
         var eventArgs = new EnemyDeathEventArgs{Enemy = this, Killer = attacker};
         OnDeath?.Invoke(this, eventArgs);
-        OnDeathAny?.Invoke(this, null);
+        OnDeathAny?.Invoke(this, eventArgs);
 
         capsuleCollider.isTrigger = true;
 
