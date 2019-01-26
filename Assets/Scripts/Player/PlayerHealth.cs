@@ -9,7 +9,7 @@ public class PlayerHealth : MonoBehaviour
     public int startingHealth = 100;
     public int currentHealth;
     public Slider healthSlider;
-//    public Image damageImage;
+    public Image damageImage;
     public AudioClip deathClip;
     public float flashSpeed = 5f;
     public Color flashColour = new Color(1f, 0f, 0f, 0.1f);
@@ -30,6 +30,7 @@ public class PlayerHealth : MonoBehaviour
         playerMovement = GetComponent <PlayerMovement> ();
         //playerShooting = GetComponentInChildren <PlayerShooting> ();
         currentHealth = startingHealth;
+        healthSlider.value = 1;
     }
 
 
@@ -52,8 +53,9 @@ public class PlayerHealth : MonoBehaviour
         damaged = true;
 
         currentHealth -= amount;
+        Debug.Log(currentHealth);
 
-        healthSlider.value = currentHealth;
+        healthSlider.value = currentHealth / (float)startingHealth;
 
         playerAudio.Play ();
 
