@@ -1,21 +1,25 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class GunStatus : MonoBehaviour
+﻿namespace Gun
 {
+    using System.Collections;
+    using System.Collections.Generic;
+    using Gun;
+    using UnityEngine;
 
-    public Ammunition ammunition;
-   
-    // Start is called before the first frame update
-    void Start()
+    public class GunStatus
     {
-        
-    }
+        private static GunStatus instance;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public Ammunition ammunition;
+        //public Gun TODO what gun is used
+
+        private GunStatus()
+        {
+            ammunition = new Ammunition();
+        }
+
+        public static GunStatus GetInstance()
+        {
+            return instance ?? (instance = new GunStatus());
+        }
     }
 }

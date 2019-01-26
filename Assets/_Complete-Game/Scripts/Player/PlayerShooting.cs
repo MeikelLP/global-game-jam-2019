@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Gun;
+using UnityEngine;
 using UnitySampleAssets.CrossPlatformInput;
 
 namespace CompleteProject
@@ -9,6 +10,7 @@ namespace CompleteProject
         public float timeBetweenBullets = 0.15f;        // The time between each shot.
         public float range = 100f;                      // The distance the gun can fire.
 
+        public GunStatus gunStatus;
 
         float timer;                                    // A timer to determine when to fire.
         Ray shootRay = new Ray();                       // A ray from the gun end forwards.
@@ -33,6 +35,7 @@ namespace CompleteProject
             gunAudio = GetComponent<AudioSource> ();
             gunLight = GetComponent<Light> ();
 			//faceLight = GetComponentInChildren<Light> ();
+			gunStatus = GunStatus.GetInstance();
         }
 
 
@@ -76,6 +79,18 @@ namespace CompleteProject
 
         void Shoot ()
         {
+            if (gunStatus.ammunition.IsEmpty())
+            {
+                Debug.Log("ammunition is empty");
+                // TODO show message you need to reload
+                return;
+            }
+            else
+            {
+                Debug.Log("Decreasing ammunition");
+                gunStatus.ammunition.Decrease();
+            }
+
             // Reset the timer.
             timer = 0f;
 

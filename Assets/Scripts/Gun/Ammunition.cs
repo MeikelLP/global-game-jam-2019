@@ -1,41 +1,32 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class Ammunition : MonoBehaviour
+namespace Gun
 {
-
-    public int min;
-    public int max;
-    public int current;
-   
-    // Start is called before the first frame update
-    void Start()
+    public class Ammunition
     {
-        
-    }
+        public int max;
+        public int current;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void Decrease()
-    {
-        if (current >= 0)
+        public Ammunition()
         {
-            current--;    
+            max = 10;
+            current = max;
         }
-    }
 
-    public bool isEmpty()
-    {
-        return current == 0;
-    }
+        public void Decrease()
+        {
+            if (current >= 0)
+            {
+                current--;
+            }
+        }
 
-    void Reload()
-    {
-        current = max;
+        public bool IsEmpty()
+        {
+            return current == 0;
+        }
+
+        public void Reload()
+        {
+            current = max;
+        }
     }
 }
