@@ -17,7 +17,8 @@ public class EnemyHealth : MonoBehaviour
     bool isDead;
     bool isSinking;
 
-    public event EventHandler<EventArgs> OnDeath; 
+    public static event EventHandler<EnemyDeathEventArgs> OnDeathAny;
+    public event EventHandler<EnemyDeathEventArgs> OnDeath; 
 
 
     void Awake ()
@@ -40,7 +41,7 @@ public class EnemyHealth : MonoBehaviour
     }
 
 
-    public void TakeDamage (int amount, Vector3 hitPoint)
+    public void TakeDamage (PlayerShooting attacker, int amount, Vector3 hitPoint)
     {
         if(isDead)
             return;
@@ -54,15 +55,17 @@ public class EnemyHealth : MonoBehaviour
 
         if(currentHealth <= 0)
         {
-            Death ();
+            Death (attacker);
         }
     }
 
 
-    void Death ()
+    void Death (PlayerShooting attacker)
     {
         isDead = true;
-        OnDeath?.Invoke(this, null);
+        var eventArgs = new EnemyDeathEventArgs{Enemy = this, Killer = attacker};
+        OnDeath?.Invoke(this, eventArgs);
+        OnDeathAny?.Invoke(this, null);
 
         capsuleCollider.isTrigger = true;
 

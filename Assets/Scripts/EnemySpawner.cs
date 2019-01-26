@@ -55,7 +55,7 @@ public class EnemySpawner : MonoBehaviour
                     SpawnEnemy();
                 }
 
-                yield return new WaitUntil(() => EnemiesAlive == 0);
+                yield return new WaitUntil(() => EnemiesAlive <= (int)keyframe.value / 2);
             }
             yield return new WaitForSeconds(wavePause);
         }
