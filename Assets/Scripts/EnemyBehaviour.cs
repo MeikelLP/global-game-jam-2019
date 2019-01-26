@@ -14,17 +14,19 @@ public class EnemyBehaviour : MonoBehaviour
     [SerializeField] private int attacksPerMinute = 40;
 
     public bool IsAttacking;
+    private GameObject _player;
 
     // Start is called before the first frame update
     void Start()
     {
+        _player = GameObject.FindWithTag("Player");
         _agent = GetComponent<NavMeshAgent>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        _agent.destination = PlayerBehaviour.Instance.transform.position;
+        _agent.destination = _player.transform.position;
 
         var distance = Vector3.Distance(_agent.destination, transform.position);
         if (distance <= range)
