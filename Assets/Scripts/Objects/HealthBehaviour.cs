@@ -3,19 +3,16 @@ using UnityEngine.UI;
 
 namespace Objects
 {
-    public abstract class HealthBehavior : MonoBehaviour
+    public abstract class HealthBehaviour : MonoBehaviour
     {
         public int startingHealth = 100;
         public int currentHealth;
         public Slider healthSlider;
         public Image damageImage;
-      
-        //public float flashSpeed = 5f;
-        //public Color flashColour = new Color(1f, 0f, 0f, 0.1f);
 
         public void TakeDamage (PlayerShooting attacker, int damageAmount, Vector3 hitPoint)
         {
-            Debug.Log("calling takedamage");
+            Debug.Log("calling take damage");
             // TODO GetAudioSource().Play ();
 
             currentHealth -= damageAmount;
@@ -26,11 +23,11 @@ namespace Objects
 
             if(currentHealth <= 0)
             {
-                Death();
+                Death(attacker);
             }
         }
 
-        public abstract void Death();
+        protected abstract void Death(PlayerShooting attacker);
         
         public abstract AudioSource GetAudioSource();
         public abstract AudioClip GetDeathClip();

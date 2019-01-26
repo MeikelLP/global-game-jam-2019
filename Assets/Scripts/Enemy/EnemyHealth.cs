@@ -1,19 +1,18 @@
 ﻿using System;
+using Objects;
 using UnityEngine;
 
-public class EnemyHealth : MonoBehaviour
+public class EnemyHealth : HealthBehaviour
 {
-    public int startingHealth = 100;
-    public int currentHealth;
     public float sinkSpeed = 2.5f;
     public int scoreValue = 10;
     public AudioClip deathClip;
-
 
     Animator anim;
     AudioSource enemyAudio;
     ParticleSystem hitParticles;
     CapsuleCollider capsuleCollider;
+
     bool isDead;
     bool isSinking;
 
@@ -31,7 +30,6 @@ public class EnemyHealth : MonoBehaviour
         currentHealth = startingHealth;
     }
 
-
     void Update ()
     {
         if(isSinking)
@@ -43,8 +41,10 @@ public class EnemyHealth : MonoBehaviour
 
     public void TakeDamage (PlayerShooting attacker, int amount, Vector3 hitPoint)
     {
-        if(isDead)
+        if (isDead)
+        {
             return;
+        }
 
         enemyAudio.Play ();
 
@@ -59,8 +59,7 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
-
-    void Death (PlayerShooting attacker)
+    protected override void Death (PlayerShooting attacker)
     {
         isDead = true;
         var eventArgs = new EnemyDeathEventArgs{Enemy = this, Killer = attacker};
@@ -77,7 +76,7 @@ public class EnemyHealth : MonoBehaviour
     }
 
 
-    public void StartSinking ()
+    void StartSinking ()
     {
         GetComponent <UnityEngine.AI.NavMeshAgent> ().enabled = false;
         GetComponent <Rigidbody> ().isKinematic = true;
@@ -85,4 +84,20 @@ public class EnemyHealth : MonoBehaviour
         //ScoreManager.score += scoreValue;
         Destroy (gameObject, 2f);
     }
+    
+    public override AudioSource GetAudioSource()
+    {
+        return enemyAudio;
+    }
+
+    public override AudioClip GetDeathClip()
+    {
+        return deathClip;
+    }
+
+    public override ParticleSystem GetHitParticles()
+    {
+        return hitParticles;
+    }
+
 }

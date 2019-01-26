@@ -86,7 +86,7 @@ public class PlayerShooting : MonoBehaviour
 
         if (Physics.Raycast(shootRay, out shootHit, range, shootableMask))
         {
-            HealthBehavior destroyableComponent = shootHit.collider.GetComponent<HealthBehavior>();
+            HealthBehaviour destroyableComponent = shootHit.collider.GetComponent<HealthBehaviour>();
             if (destroyableComponent != null)
             {
                 Debug.Log("found component with health behaviour");

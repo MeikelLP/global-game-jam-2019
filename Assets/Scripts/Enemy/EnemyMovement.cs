@@ -6,9 +6,8 @@ using UnityEngine.AI;
 public class EnemyMovement : MonoBehaviour
 {
     //PlayerHealth playerHealth;
-    EnemyHealth enemyHealth;
-    NavMeshAgent nav;
-
+    private EnemyHealth enemyHealth;
+    private NavMeshAgent nav;
 
     void Awake()
     {
@@ -16,33 +15,23 @@ public class EnemyMovement : MonoBehaviour
         nav = GetComponent<NavMeshAgent>();
     }
 
-
-    void Update()
-    {
-//        var deltaTime = Time.deltaTime;
-//        if (enemyHealth.currentHealth > 0)
-//        {
-//            nav.destination = player.position;
-//        }
-    }
-
     void FixedUpdate()
     {
-        HealthBehavior closestEnemy = FindClosestEnemy();
+        HealthBehaviour closestEnemy = FindClosestEnemy();
 
         nav.destination = closestEnemy.transform.position;
     }
 
 
-    private HealthBehavior FindClosestEnemy()
+    private HealthBehaviour FindClosestEnemy()
     {
-        var gos = GameObject.FindObjectsOfType<HealthBehavior>();
+        var gos = GameObject.FindObjectsOfType<HealthBehaviour>();
         // TODO remove enemies
 
-        HealthBehavior closest = null;
+        HealthBehaviour closest = null;
         float minimumDistance = Mathf.Infinity;
         Vector3 position = transform.position;
-        foreach (HealthBehavior go in gos)
+        foreach (HealthBehaviour go in gos)
         {
             Vector3 diff = go.transform.position - position;
             float curDistance = diff.sqrMagnitude;

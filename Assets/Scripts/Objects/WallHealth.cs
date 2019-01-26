@@ -1,51 +1,41 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using Objects;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class WallHealth : HealthBehavior
+namespace Objects
 {
-    public AudioClip wallDeathClip;
-    public Animator anim;
-    public AudioSource wallAudioSource;
-    public ParticleSystem hitParticles;
-
-    // Start is called before the first frame update
-    void Start()
+    public class WallHealth : HealthBehaviour
     {
-        // TODO replace enenmy sources
-        anim = GetComponent <Animator> ();
-        wallAudioSource = GetComponent <AudioSource> ();
-        hitParticles = GetComponent <ParticleSystem> ();
-    }
+        public AudioClip wallDeathClip;
+        public Animator anim;
+        public AudioSource wallAudioSource;
+        public ParticleSystem hitParticles;
 
-    // Update is called once per frame
-    void Update()
-    {
-       
-    }
+        private void Start()
+        {
+            // TODO replace enenmy sources
+            anim = GetComponent <Animator> ();
+            wallAudioSource = GetComponent <AudioSource> ();
+            hitParticles = GetComponent <ParticleSystem> ();
+        }
 
-    public override void Death()
-    {
-//        GetComponent <UnityEngine.AI.NavMeshAgent> ().enabled = false;
-//        GetComponent <Rigidbody> ().isKinematic = true;
-        Debug.Log("removing:" + gameObject);
-        Destroy (gameObject, 0f);
-    }
+        protected override void Death(PlayerShooting attacker)
+        {
+            Debug.Log("removing:" + gameObject);
+            Destroy (gameObject, 0f);
+        }
 
-    public override AudioSource GetAudioSource()
-    {
-        return wallAudioSource;
-    }
+        public override AudioSource GetAudioSource()
+        {
+            return wallAudioSource;
+        }
 
-    public override AudioClip GetDeathClip()
-    {
-        return wallDeathClip;
-    }
+        public override AudioClip GetDeathClip()
+        {
+            return wallDeathClip;
+        }
 
-    public override ParticleSystem GetHitParticles()
-    {
-        return hitParticles;
+        public override ParticleSystem GetHitParticles()
+        {
+            return hitParticles;
+        }
     }
 }

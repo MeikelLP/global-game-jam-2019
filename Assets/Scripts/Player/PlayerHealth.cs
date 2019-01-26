@@ -5,11 +5,9 @@ using Objects;
 using UnityEngine.SceneManagement;
 
 
-public class PlayerHealth : HealthBehavior
+public class PlayerHealth : HealthBehaviour
 {
 
-    public Slider healthSlider;
-    public Image damageImage;
     public AudioClip deathClip;
     public float flashSpeed = 5f;
     public Color flashColour = new Color(1f, 0f, 0f, 0.1f);
@@ -19,7 +17,6 @@ public class PlayerHealth : HealthBehavior
     PlayerMovement playerMovement;
     //PlayerShooting playerShooting;
     bool isDead;
-    bool damaged;
 
     // TODO replace enenmy sources
     private ParticleSystem hitParticles;
@@ -42,37 +39,17 @@ public class PlayerHealth : HealthBehavior
 
     void Update ()
     {
-        if(damaged)
-        {
-//            damageImage.color = flashColour;
-        }
-        else
-        {
-//            damageImage.color = Color.Lerp (damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
-        }
-        damaged = false;
     }
 
 
-    public void TakeDamage (int amount)
+    public void TakeDamage (PlayerShooting attacker, int damageAmount, Vector3 hitPoint)
     {
-        damaged = true;
-
-        currentHealth -= amount;
-        Debug.Log(currentHealth);
+        base.TakeDamage(attacker, damageAmount, hitPoint);
 
         healthSlider.value = currentHealth / (float)startingHealth;
-
-        playerAudio.Play ();
-
-        if(currentHealth <= 0 && !isDead)
-        {
-            Death ();
-        }
     }
 
-
-    public override void Death()
+    protected override void Death(PlayerShooting attacker)
     {
         isDead = true;
 
