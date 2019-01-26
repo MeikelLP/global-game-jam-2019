@@ -1,18 +1,20 @@
 using System;
 using UnityEngine;
-using Weapon.WeaponImpl;
+using UnityEngine.UI;
 
 namespace Weapon
 {
     public class WeaponSelection : MonoBehaviour
     {
+        public Image reloadIndicator;
+        
         private Weapon[] weapons;
         public Weapon selectedWeapon;
 
         void Start()
         {
             weapons = new Weapon[3];
-            weapons[0] = new WeaponGun();
+            weapons[0] = gameObject.AddComponent<Weapon>();
             //weapons[1] = new WeaponGun();
             //weapons[2] = new WeaponGun();
             // TODO add weapons
