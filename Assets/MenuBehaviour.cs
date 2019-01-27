@@ -20,6 +20,7 @@ public class MenuBehaviour : MonoBehaviour
     {
         SceneManager.LoadSceneAsync("Master", LoadSceneMode.Single);
         SceneManager.LoadSceneAsync("Level1", LoadSceneMode.Additive);
+        SceneManager.LoadSceneAsync("Level2", LoadSceneMode.Additive);
     }
 
     public void CloseGame()
