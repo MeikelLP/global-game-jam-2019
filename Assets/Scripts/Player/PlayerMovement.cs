@@ -46,8 +46,12 @@ public class PlayerMovement : MonoBehaviour
 
     void Move(float h, float v)
     {
+        Vector3 targetDirection = new Vector3(h, 0f, v);
+        targetDirection = Camera.main.transform.TransformDirection(targetDirection);
+        targetDirection.y = 0.0f;
+        
         // Set the movement vector based on the axis input.
-        movement.Set(h, 0f, v);
+        movement = targetDirection;
 
         // Normalise the movement vector and make it proportional to the speed per second.
         movement = movement.normalized * speed * Time.deltaTime;
