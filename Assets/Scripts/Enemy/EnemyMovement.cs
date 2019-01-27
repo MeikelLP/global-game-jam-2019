@@ -65,7 +65,6 @@ namespace Enemy
         private void Despawn()
         {
             var distance = Vector3.Distance(transform.position, exit.transform.position);
-            Debug.Log(distance);
             if (distance < despawnDistance)
             {
                 Destroy(gameObject);
