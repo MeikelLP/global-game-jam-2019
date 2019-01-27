@@ -17,7 +17,7 @@ namespace Enemy
 
         private GameObject exit = null;
 
-        public float despawnDistance = 0.2f;
+        public float despawnDistance = 2f;
 
         void Awake()
         {
