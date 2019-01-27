@@ -101,4 +101,8 @@ public class EnemyHealth : HealthBehaviour
         return hitParticles;
     }
 
+    public void Die()
+    {
+        Death(null);
+    }
 }

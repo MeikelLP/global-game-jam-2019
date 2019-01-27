@@ -67,6 +67,7 @@ namespace Enemy
             var distance = Vector3.Distance(transform.position, exit.transform.position);
             if (distance < despawnDistance)
             {
+                GetComponent<EnemyHealth>().Die();
                 Destroy(gameObject);
             }
         }
