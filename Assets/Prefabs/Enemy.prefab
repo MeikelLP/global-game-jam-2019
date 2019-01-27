@@ -4988,7 +4988,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
-  prewarm: 0
+  prewarm: 1
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
@@ -9707,11 +9707,93 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 52.10968
       objectReference: {fileID: 0}
+    - target: {fileID: 137000012344593156, guid: 9aad9de7cbca6d84b82891c3a1e63e34,
+        type: 3}
+      propertyPath: m_Bones.Array.data[0]
+      value: 
+      objectReference: {fileID: 1679442010696806057}
+    - target: {fileID: 137000012344593156, guid: 9aad9de7cbca6d84b82891c3a1e63e34,
+        type: 3}
+      propertyPath: m_Bones.Array.data[1]
+      value: 
+      objectReference: {fileID: 1679442010188359089}
+    - target: {fileID: 137000012344593156, guid: 9aad9de7cbca6d84b82891c3a1e63e34,
+        type: 3}
+      propertyPath: m_Bones.Array.data[2]
+      value: 
+      objectReference: {fileID: 1679442011012716641}
+    - target: {fileID: 137000012344593156, guid: 9aad9de7cbca6d84b82891c3a1e63e34,
+        type: 3}
+      propertyPath: m_Bones.Array.data[3]
+      value: 
+      objectReference: {fileID: 1679442009941889161}
+    - target: {fileID: 137000012344593156, guid: 9aad9de7cbca6d84b82891c3a1e63e34,
+        type: 3}
+      propertyPath: m_Bones.Array.data[4]
+      value: 
+      objectReference: {fileID: 1679442012734401909}
+    - target: {fileID: 137000012344593156, guid: 9aad9de7cbca6d84b82891c3a1e63e34,
+        type: 3}
+      propertyPath: m_Bones.Array.data[5]
+      value: 
+      objectReference: {fileID: 1679442013544051559}
+    - target: {fileID: 137000012344593156, guid: 9aad9de7cbca6d84b82891c3a1e63e34,
+        type: 3}
+      propertyPath: m_Bones.Array.data[6]
+      value: 
+      objectReference: {fileID: 1679442012705885179}
+    - target: {fileID: 137000012344593156, guid: 9aad9de7cbca6d84b82891c3a1e63e34,
+        type: 3}
+      propertyPath: m_RootBone
+      value: 
+      objectReference: {fileID: 1679442010696806057}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9aad9de7cbca6d84b82891c3a1e63e34, type: 3}
 --- !u!4 &1679442009896080033 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4000012535691032, guid: 9aad9de7cbca6d84b82891c3a1e63e34,
+    type: 3}
+  m_PrefabInstance: {fileID: 1675521998449550777}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1679442013544051559 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4000013182621406, guid: 9aad9de7cbca6d84b82891c3a1e63e34,
+    type: 3}
+  m_PrefabInstance: {fileID: 1675521998449550777}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1679442009941889161 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4000012522779952, guid: 9aad9de7cbca6d84b82891c3a1e63e34,
+    type: 3}
+  m_PrefabInstance: {fileID: 1675521998449550777}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1679442012734401909 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4000012951783628, guid: 9aad9de7cbca6d84b82891c3a1e63e34,
+    type: 3}
+  m_PrefabInstance: {fileID: 1675521998449550777}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1679442012705885179 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4000012946353730, guid: 9aad9de7cbca6d84b82891c3a1e63e34,
+    type: 3}
+  m_PrefabInstance: {fileID: 1675521998449550777}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1679442010696806057 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4000010660432656, guid: 9aad9de7cbca6d84b82891c3a1e63e34,
+    type: 3}
+  m_PrefabInstance: {fileID: 1675521998449550777}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1679442010188359089 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4000012242845704, guid: 9aad9de7cbca6d84b82891c3a1e63e34,
+    type: 3}
+  m_PrefabInstance: {fileID: 1675521998449550777}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1679442011012716641 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4000011452415448, guid: 9aad9de7cbca6d84b82891c3a1e63e34,
     type: 3}
   m_PrefabInstance: {fileID: 1675521998449550777}
   m_PrefabAsset: {fileID: 0}
