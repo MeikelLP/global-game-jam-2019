@@ -7,7 +7,7 @@ namespace Weapon
     [RequireComponent(typeof(WeaponSelection))]
     public class Weapon : MonoBehaviour
     {
-        protected Ammunition ammunition;
+        public Ammunition ammunition;
 
         //protected Damage damage;
         //protected Accuracy accuracy;
@@ -50,6 +50,7 @@ namespace Weapon
             ammunition = new Ammunition(startAmmo, startAmmo);
             weaponSelection = GetComponent<WeaponSelection>();
             weaponSelection.reloadIndicator.fillAmount = 0;
+            weaponSelection.UpdateAmmunitionUi();
         }
 
         void Update()
@@ -80,6 +81,7 @@ namespace Weapon
 
             weaponSelection.selectedWeapon.Reload();
             weaponSelection.reloadIndicator.fillAmount = 0;
+            weaponSelection.UpdateAmmunitionUi();
             IsReloading = false;
         }
     }

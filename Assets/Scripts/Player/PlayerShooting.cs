@@ -65,6 +65,7 @@ public class PlayerShooting : MonoBehaviour
         else
         {
             weaponSelection.selectedWeapon.DecreaseAmmunition();
+            weaponSelection.UpdateAmmunitionUi();
         }
         
         timer = 0f;
