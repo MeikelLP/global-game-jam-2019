@@ -128,6 +128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPriority: 0
+  despawnDistance: 2
 --- !u!82 &7739143370420943347
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4957,11 +4958,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4000012535691032, guid: 9aad9de7cbca6d84b82891c3a1e63e34, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.979
+      value: -0.91
       objectReference: {fileID: 0}
     - target: {fileID: 4000012535691032, guid: 9aad9de7cbca6d84b82891c3a1e63e34, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.020236
+      value: -0.050626
       objectReference: {fileID: 0}
     - target: {fileID: 4000012535691032, guid: 9aad9de7cbca6d84b82891c3a1e63e34, type: 3}
       propertyPath: m_LocalRotation.x
@@ -4997,15 +4998,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4000012535691032, guid: 9aad9de7cbca6d84b82891c3a1e63e34, type: 3}
       propertyPath: m_LocalScale.x
-      value: 21.427902
+      value: 52.10968
       objectReference: {fileID: 0}
     - target: {fileID: 4000012535691032, guid: 9aad9de7cbca6d84b82891c3a1e63e34, type: 3}
       propertyPath: m_LocalScale.y
-      value: 37.26097
+      value: 90.6135
       objectReference: {fileID: 0}
     - target: {fileID: 4000012535691032, guid: 9aad9de7cbca6d84b82891c3a1e63e34, type: 3}
       propertyPath: m_LocalScale.z
-      value: 21.427902
+      value: 52.10968
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9aad9de7cbca6d84b82891c3a1e63e34, type: 3}
