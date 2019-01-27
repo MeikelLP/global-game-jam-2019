@@ -70,5 +70,14 @@ namespace Enemy
                 Destroy(gameObject);
             }
         }
+
+        private void OnDrawGizmosSelected()
+        {
+            if (Application.isPlaying)
+            {
+                Gizmos.color = Color.red;
+                Gizmos.DrawWireSphere(nav.destination, 0.5f);
+            }
+        }
     }
 }

@@ -79,4 +79,14 @@ public class EnemySpawner : MonoBehaviour
     {
         EnemiesAlive--;
     }
+
+    private void OnDrawGizmosSelected()
+    {
+        var vector3 = new Vector3(1,0.1f, 1);
+        Gizmos.color = Color.yellow;
+        foreach (var spawnPoint in spawnPoints)
+        {
+            Gizmos.DrawWireCube(spawnPoint.position, vector3);
+        }
+    }
 }
