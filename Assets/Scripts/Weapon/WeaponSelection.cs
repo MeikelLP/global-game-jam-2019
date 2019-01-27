@@ -10,6 +10,9 @@ namespace Weapon
         
         private Weapon[] weapons;
         public Weapon selectedWeapon;
+        
+        [SerializeField] private Text currentAmmunitionText;
+        [SerializeField] private Text maxAmmunitionText;
 
         void Start()
         {
@@ -51,6 +54,12 @@ namespace Weapon
         {
             // TODO implement
         }
-        
+
+        public void UpdateAmmunitionUi()
+        {
+            currentAmmunitionText.text = selectedWeapon.ammunition.current.ToString();
+            maxAmmunitionText.text = selectedWeapon.ammunition.max.ToString();
+        }
+
     }
 }
