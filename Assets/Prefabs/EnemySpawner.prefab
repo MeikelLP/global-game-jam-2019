@@ -57,6 +57,9 @@ MonoBehaviour:
   - {fileID: 6304723941873177837}
   enemyPrefabs:
   - {fileID: 1322047510264419640, guid: 77cd3569c072d3a49b3e7a6da4294094, type: 3}
+  - {fileID: 1322047510264419640, guid: 77cd3569c072d3a49b3e7a6da4294094, type: 3}
+  - {fileID: 1322047510264419640, guid: 77cd3569c072d3a49b3e7a6da4294094, type: 3}
+  - {fileID: 7349345853259521958, guid: ef3db59b7c193237e926c273159fa03d, type: 3}
   waves:
   - serializedVersion: 2
     m_Curve:
