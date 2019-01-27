@@ -40,5 +40,14 @@ namespace Enemy
 
             nav.destination = closestTarget.transform.position;
         }
+
+        private void OnDrawGizmosSelected()
+        {
+            if (Application.isPlaying)
+            {
+                Gizmos.color = Color.red;
+                Gizmos.DrawWireSphere(nav.destination, 0.5f);
+            }
+        }
     }
 }
