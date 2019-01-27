@@ -9,7 +9,6 @@ public class MenuBehaviour : MonoBehaviour
     public void UseMouse()
     {
         CompleteProject.PlayerMovement.useMouse = true;
-    
     }
 
     public void UseController()
@@ -19,18 +18,14 @@ public class MenuBehaviour : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene("_Complete-Game");
+        SceneManager.LoadSceneAsync("Master", LoadSceneMode.Single);
+        SceneManager.LoadSceneAsync("Level1", LoadSceneMode.Additive);
+        SceneManager.LoadSceneAsync("Level2", LoadSceneMode.Additive);
     }
 
     public void CloseGame()
     {
         Application.Quit();
-    }
-
-    public void Select()
-    
-    {
-        //Start.Select(); 
     }
 
 
