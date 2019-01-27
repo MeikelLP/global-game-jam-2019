@@ -13,10 +13,17 @@ namespace Enemy
 
         public EnemyPriority enemyPriority;
 
+        private StealingBehaviour stealingBehaviour;
+
+        private GameObject exit = null;
+
+        public float despawnDistance = 0.2f;
+
         void Awake()
         {
             enemyHealth = GetComponent<EnemyHealth>();
             nav = GetComponent<NavMeshAgent>();
+            stealingBehaviour = GetComponent<StealingBehaviour>();
         }
 
         void FixedUpdate()
@@ -26,19 +33,43 @@ namespace Enemy
                 return;
             }
 
-            Behaviour closestTarget; 
+            Transform closestTarget; 
             switch (enemyPriority)
             {
                 case EnemyPriority.STEALABLE:
-                    closestTarget = EnemyTargetFinder.FindClosestStealable(transform.position);
+                    if (stealingBehaviour.hasStealed)
+                    {
+                        if (exit == null)
+                        {
+                            exit = GameObject.Find("Spawn");
+                        }
+                        
+                        closestTarget = exit.transform;
+
+                        Despawn();
+                    }
+                    else
+                    {
+                        closestTarget = EnemyTargetFinder.FindClosestStealable(transform.position).transform;
+                    }
                     break;
                 case EnemyPriority.PLAYER:
                 default:
-                    closestTarget = EnemyTargetFinder.FindClosestEnemy(transform.position);
+                    closestTarget = EnemyTargetFinder.FindClosestEnemy(transform.position).transform;
                     break;
             }
 
-            nav.destination = closestTarget.transform.position;
+            nav.destination = closestTarget.position;
+        }
+
+        private void Despawn()
+        {
+            var distance = Vector3.Distance(transform.position, exit.transform.position);
+            Debug.Log(distance);
+            if (distance < despawnDistance)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }
