@@ -50,6 +50,7 @@ namespace Weapon
             ammunition = new Ammunition(startAmmo, startAmmo);
             weaponSelection = GetComponent<WeaponSelection>();
             weaponSelection.reloadIndicator.fillAmount = 0;
+            weaponSelection.UpdateAmmunitionUi();
         }
 
         void Update()
@@ -80,6 +81,7 @@ namespace Weapon
 
             weaponSelection.selectedWeapon.Reload();
             weaponSelection.reloadIndicator.fillAmount = 0;
+            weaponSelection.UpdateAmmunitionUi();
             IsReloading = false;
         }
     }
