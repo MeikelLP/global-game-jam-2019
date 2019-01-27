@@ -13,7 +13,11 @@ namespace Enemy
         public static Behaviour FindClosestEnemy(Vector3 fromPosition)
         {
             return FindClosest<HealthBehaviour>(fromPosition);
-
+        }
+      
+        public static Behaviour FindClosestStealable(Vector3 fromPosition)
+        {
+            return FindClosest<StealableObject>(fromPosition);
         }
 
         public static Behaviour FindClosest<T>(Vector3 position) where T : Behaviour
@@ -39,7 +43,6 @@ namespace Enemy
             }
 
             return closest;
-             
-        } 
+        }
     }
 }

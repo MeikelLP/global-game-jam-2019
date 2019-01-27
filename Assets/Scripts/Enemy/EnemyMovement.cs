@@ -1,4 +1,5 @@
-﻿using Objects;
+﻿using System;
+using Objects;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -9,6 +10,8 @@ namespace Enemy
         //PlayerHealth playerHealth;
         private EnemyHealth enemyHealth;
         private NavMeshAgent nav;
+
+        public EnemyPriority enemyPriority;
 
         void Awake()
         {
@@ -23,8 +26,19 @@ namespace Enemy
                 return;
             }
 
-            var closestEnemy = EnemyTargetFinder.FindClosestEnemy(transform.position);
-            nav.destination = closestEnemy.transform.position;
+            Behaviour closestTarget; 
+            switch (enemyPriority)
+            {
+                case EnemyPriority.STEALABLE:
+                    closestTarget = EnemyTargetFinder.FindClosestStealable(transform.position);
+                    break;
+                case EnemyPriority.PLAYER:
+                default:
+                    closestTarget = EnemyTargetFinder.FindClosestEnemy(transform.position);
+                    break;
+            }
+
+            nav.destination = closestTarget.transform.position;
         }
     }
 }
