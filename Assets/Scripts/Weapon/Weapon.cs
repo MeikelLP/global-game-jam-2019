@@ -7,7 +7,7 @@ namespace Weapon
     [RequireComponent(typeof(WeaponSelection))]
     public class Weapon : MonoBehaviour
     {
-        protected Ammunition ammunition;
+        public Ammunition ammunition;
 
         //protected Damage damage;
         //protected Accuracy accuracy;
